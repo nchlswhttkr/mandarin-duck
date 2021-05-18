@@ -47,3 +47,4 @@ if [[ -a "$REPO/hooks/post-receive" ]]; then
 fi
 cp ./post-receive.sh "$REPO/hooks/post-receive"
 chmod +x "$REPO/hooks/post-receive"
+echo "Created hook at $REPO/hooks/post-receive"

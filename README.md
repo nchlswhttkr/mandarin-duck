@@ -1,4 +1,4 @@
-# mandarin-duck
+# mandarin-duck [![Build status](https://badge.buildkite.com/e2e9dc24f63475920927734c9faab681d4606556fa25993eb4.svg)](https://buildkite.com/nchlswhttkr/mandarin-duck)
 
 A tool to trigger Buildkite pipelines from a self-hosted Git repository.
 
