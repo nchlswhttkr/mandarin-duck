@@ -30,7 +30,7 @@ else
     echo "Creating config at $CONFIG"
     mkdir ~/.mandarin-duck
     jq --null-input "
-        .version = \"1\" |
+        .version = \"1.0\" |
         .buildkite_api_token = \"\" |
         .buildkite_organization_slug = \"\" |
         .projects[\"$REPO\"].buildkite_pipeline_slug = \"\"

@@ -5,17 +5,24 @@ set -euo pipefail
 
 REPO=$(pwd)
 CONFIG="$HOME/.mandarin-duck/mandarin-duck.cfg"
-BUILDKITE_API_TOKEN=$(jq --raw-output ".buildkite_api_token" "$CONFIG")
-if [[ ${BUILDKITE_API_TOKEN:=''} == '' ]]; then
+CONFIG_VERSION=$(jq --raw-output ".version // \"\"" "$CONFIG")
+if [[ $CONFIG_VERSION != 1.* ]]; then
+    echo -e "\033[31mIncompatible version of mandarin-duck\033[0m"
+    exit 1
+BUILDKITE_API_TOKEN=$(jq --raw-output ".buildkite_api_token // \"\"" "$CONFIG")
+if [[ $BUILDKITE_API_TOKEN == '' ]]; then
     echo -e "\033[31mBuildkite API token not set, check your config at $CONFIG\033[0m"
+    exit 1
 fi
-BUILDKITE_ORGANIZATION_SLUG=$(jq --raw-output ".buildkite_organization_slug" "$CONFIG")
-if [[ ${BUILDKITE_ORGANIZATION_SLUG:=''} == '' ]]; then
+BUILDKITE_ORGANIZATION_SLUG=$(jq --raw-output ".buildkite_organization_slug // \"\"" "$CONFIG")
+if [[ $BUILDKITE_ORGANIZATION_SLUG == '' ]]; then
     echo -e "\033[31mBuildkite organization name not set, check your config at $CONFIG\033[0m"
+    exit 1
 fi
-BUILDKITE_PIPELINE_SLUG=$(jq --raw-output ".projects[\"$REPO\"].buildkite_pipeline_slug" "$CONFIG")
-if [[ ${BUILDKITE_PIPELINE_SLUG:=''} == '' ]]; then
+BUILDKITE_PIPELINE_SLUG=$(jq --raw-output ".projects[\"$REPO\"].buildkite_pipeline_slug // \"\"" "$CONFIG")
+if [[ $BUILDKITE_PIPELINE_SLUG == '' ]]; then
     echo -e "\033[31mBuildkite pipeline name not set, check your config at $CONFIG\033[0m"
+    exit 1
 fi
 
 # Hacky way of getting all branch names from list of updated local refs
