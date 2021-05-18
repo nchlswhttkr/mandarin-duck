@@ -4,6 +4,7 @@ A tool to trigger Buildkite pipelines from a self-hosted Git repository.
 
 <!-- TODO: Handle tag pushing - how is this represented? -->
 <!-- TODO: Move to self-hosted repository, clarify that GitHub is a mirror -->
+<!-- TODO: Support [skip ci] - or maybe leave to Buildkite? -->
 
 ## Usage
 
@@ -18,7 +19,7 @@ ssh git@example.com
 
 git init --bare /srv/git/example-project.git # If your repo isn't already set up
 
-git clone https://github.com/nchlswhttkr/mandarin-duck.git
+git clone https://nicholas.cloud/git/mandarin-duck.git
 cd mandarin-duck
 ./install.sh /srv/git/example-project.git/
 ```
