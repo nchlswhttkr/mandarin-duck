@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# TODO: Verify jq and curl are installed
+if ! command -v curl > /dev/null; then
+    echo -e "\033[31mYou must have curl installed\033[0m"
+    exit 1
+fi
+if ! command -v jq > /dev/null; then
+    echo -e "\033[31mYou must have jq installed\033[0m"
+    exit 1
+fi
 
 if (( $# != 1 )); then
     echo -e "\033[31mExpected repo path, like \"./install.sh /path/to/repo.git\"\033[0m"
