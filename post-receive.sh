@@ -9,6 +9,7 @@ CONFIG_VERSION=$(jq --raw-output ".version // \"\"" "$CONFIG")
 if [[ $CONFIG_VERSION != 1.* ]]; then
     echo -e "\033[31mIncompatible version of mandarin-duck\033[0m"
     exit 1
+fi
 BUILDKITE_API_TOKEN=$(jq --raw-output ".buildkite_api_token // \"\"" "$CONFIG")
 if [[ $BUILDKITE_API_TOKEN == '' ]]; then
     echo -e "\033[31mBuildkite API token not set, check your config at $CONFIG\033[0m"
@@ -35,4 +36,4 @@ cut -d ' ' -f 3 | sort | uniq | grep "refs/heads/" | cut -c 12- | while read BRA
             \"commit\": \"HEAD\",
             \"branch\": \"$BRANCH\"
         }" | jq --raw-output '.web_url'
-done;
+done
