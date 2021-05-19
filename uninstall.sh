@@ -18,6 +18,7 @@ if [[ "$DESTROY_COUNT_INPUT" != "$DESTROY_COUNT" ]]; then
     exit 1
 fi
 
+
 echo "Uninstalling mandarin-duck..."
 while read -r REPO;do
     sed -i "/# mandarin-duck v[.0-9]*/d" "$REPO/hooks/post-receive"

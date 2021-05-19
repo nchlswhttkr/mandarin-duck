@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO=$(pwd)
+REPO="$(pwd)"
 CONFIG="$HOME/.mandarin-duck/mandarin-duck.cfg"
 CONFIG_VERSION=$(jq --raw-output ".version // \"\"" "$CONFIG")
 if [[ $CONFIG_VERSION != 1.* ]]; then
@@ -23,6 +23,7 @@ if [[ $BUILDKITE_PIPELINE_SLUG == "" ]]; then
     echo -e "\033[31mBuildkite pipeline name not set, check your config at $CONFIG\033[0m"
     exit 1
 fi
+
 
 # Hacky way of getting all branch names from list of updated local refs
 cut -d " " -f 3 | sort | uniq | grep "refs/heads/" | cut -c 12- | while read -r BRANCH; do
