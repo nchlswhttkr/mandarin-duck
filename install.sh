@@ -49,6 +49,7 @@ chmod 600 "$DESTINATION/mandarin-duck.cfg"
 echo "Make sure to update your config file with your API token and organization/pipeline name!"
 echo "Copying post-receive.sh script"
 cp post-receive.sh "$DESTINATION/"
+chmod +x "$DESTINATION/post-receive.sh"
 
 
 echo "--- Creating trigger for $REPO"
