@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# TODO: Revoke Buildkite API token
 
 DESTINATION="$HOME/.mandarin-duck"
-
 REPOS=$(jq --raw-output ".projects | keys | .[]" "$DESTINATION/mandarin-duck.cfg")
 DESTROY_COUNT=$(wc -l <<<"$REPOS" | tr -d " ")
 echo "You are about to uninstall mandarin-duck"

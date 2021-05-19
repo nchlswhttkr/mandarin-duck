@@ -2,9 +2,7 @@
 
 A tool to trigger Buildkite pipelines from a self-hosted Git repository.
 
-<!-- TODO: Handle tag pushing - how is this represented? -->
-<!-- TODO: Move to self-hosted repository, clarify that GitHub is a mirror -->
-<!-- TODO: Support [skip ci] - or maybe leave to Buildkite? -->
+_You can clone this repository from `https://nicholas.cloud/git/mandarin-duck.git`, but it's also mirrored here to GitHub for convenience and issue tracking._
 
 ## Usage
 
@@ -33,8 +31,6 @@ The project is installed to your home directory (`~/.mandarin-duck/`), and a tri
 | `projects["/srv/git/example-project.git"].buildkite_pipeline_slug` | The URL-friendly name of this project's pipeline                                |
 
 If you want to set up triggers for multiple Git repositories, re-run the `install.sh` for each project. They will each be added to your configuration file.
-
-<!-- TODO: How to upgrade -->
 
 ### Uninstall
 

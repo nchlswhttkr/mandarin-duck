@@ -21,14 +21,10 @@ if [[ $REPO != /* ]]; then
     echo -e "\033[31mGit repository must be an absolute path\033[0m"
     exit 1
 fi
-# TODO: Verify path exists and is a Git repo
 
 
 echo "--- Setting up install directory"
 DESTINATION="$HOME/.mandarin-duck"
-# TODO: Allow values to populate from environment variables
-# TODO: Use Buildkite API token to get organization/pipeline name
-# TODO: Add option to create a new pipeline for this repo
 if [[ -d "$DESTINATION" ]]; then
     echo "Found existing installation at $DESTINATION"
     mv "$DESTINATION/mandarin-duck.cfg" "$DESTINATION/mandarin-duck.cfg"
