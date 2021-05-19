@@ -24,16 +24,25 @@ cd mandarin-duck
 ./install.sh /srv/git/example-project.git/
 ```
 
-This creates a `post-receive` hook in the target repository and a configuration file at `~/.mandarin-duck/mandarin-duck.cfg`. You'll need to fill out this file with some general and project-specific information.
+The project is installed to your home directory (`~/.mandarin-duck/`), and a trigger is added to the `post-receive` hook of the target repository. You'll need to add some additional information to the `~/.mandarin-duck/mandarin-duck.cfg` configuration file.
 
-| Name                                                               | Description                                          |
-| ------------------------------------------------------------------ | ---------------------------------------------------- |
-| `buildkite_api_token`                                              | Your Buildkite API token                             |
-| `buildkite_organization_slug`                                      | The URL-friendly name of your Buildkite organization |
-| `projects["/srv/git/example-project.git"].buildkite_pipeline_slug` | The URL-friendly name of this project's pipeline     |
+| Name                                                               | Description                                                                     |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| `buildkite_api_token`                                              | [Your Buildkite API token](https://buildkite.com/docs/apis/managing-api-tokens) |
+| `buildkite_organization_slug`                                      | The URL-friendly name of your Buildkite organization                            |
+| `projects["/srv/git/example-project.git"].buildkite_pipeline_slug` | The URL-friendly name of this project's pipeline                                |
 
 If you want to set up triggers for multiple Git repositories, re-run the `install.sh` for each project. They will each be added to your configuration file.
 
 <!-- TODO: How to upgrade -->
 
-<!-- TODO: How to uninstall -->
+### Uninstall
+
+There's a corresponding uninstall script to wipe all traces of `mandarin-duck` from your server. It deletes all the Git hooks it's created and deletes itself.
+
+```sh
+cd mandarin-duck
+./uninstall.sh
+cd ..
+rm -rf mandarin-duck
+```
