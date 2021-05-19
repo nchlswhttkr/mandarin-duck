@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+VERSION=1.0
+
 if ! command -v curl > /dev/null; then
     echo -e "\033[31mYou must have curl installed\033[0m"
     exit 1
@@ -22,36 +24,42 @@ fi
 # TODO: Verify path exists and is a Git repo
 
 
-echo "--- Creating config file"
-CONFIG=~/.mandarin-duck/mandarin-duck.cfg
+echo "--- Setting up install directory"
+DESTINATION="$HOME/.mandarin-duck"
 # TODO: Allow values to populate from environment variables
 # TODO: Use Buildkite API token to get organization/pipeline name
 # TODO: Add option to create a new pipeline for this repo
-if [[ -d "$HOME/.mandarin-duck" ]]; then
-    echo "Updating existing config $CONFIG"
-    mv $CONFIG $CONFIG.backup
+if [[ -d "$DESTINATION" ]]; then
+    echo "Found existing installation at $DESTINATION"
+    mv "$DESTINATION/mandarin-duck.cfg" "$DESTINATION/mandarin-duck.cfg"
     jq "
         .projects[\"$REPO\"].buildkite_pipeline_slug = .projects[\"$REPO\"].buildkite_pipeline_slug? // \"\"
-    " < $CONFIG.backup > $CONFIG
+    " < "$DESTINATION/mandarin-duck.cfg.backup" > "$DESTINATION/mandarin-duck.cfg"
 else
-    echo "Creating config at $CONFIG"
-    mkdir ~/.mandarin-duck
+    echo "Creating config at $DESTINATION/mandarin-duck.cfg"
+    mkdir -p "$DESTINATION"
     jq --null-input "
-        .version = \"1.0\" |
+        .version = \"$VERSION\" |
         .buildkite_api_token = \"\" |
         .buildkite_organization_slug = \"\" |
         .projects[\"$REPO\"].buildkite_pipeline_slug = \"\"
-    " > $CONFIG
+    " > "$DESTINATION/mandarin-duck.cfg"
 fi
-chmod 600 $CONFIG
+chmod 600 "$DESTINATION/mandarin-duck.cfg"
 echo "Make sure to update your config file with your API token and organization/pipeline name!"
+echo "Copying post-receive.sh script"
+cp post-receive.sh "$DESTINATION/"
 
 
-echo "--- Creating post-receive hook"
+echo "--- Creating trigger for $REPO"
 if [[ -a "$REPO/hooks/post-receive" ]]; then
-    mv "$REPO/hooks/post-receive" "$REPO/hooks/post-receive.backup"
-    echo -e "\033[33mMoved existing post-receive hook to $REPO/hooks/post-receive.backup\033[0m"
+    echo -e "\033[33mUpdating existing command\033[0m"
+    sed -i "/# mandarin-duck v[.0-9]*/d" "$REPO/hooks/post-receive"
+else
+    echo "Creating post-receive hook"
+    echo "#!/bin/sh" > "$REPO/hooks/post-receive"
+    chmod +x "$REPO/hooks/post-receive"
 fi
-cp ./post-receive.sh "$REPO/hooks/post-receive"
-chmod +x "$REPO/hooks/post-receive"
-echo "Created hook at $REPO/hooks/post-receive"
+echo "$DESTINATION/post-receive.sh # mandarin-duck v$VERSION" >> "$REPO/hooks/post-receive"
+
+# TODO: ASCII art of a duck? Would be kinda cute :)
