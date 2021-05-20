@@ -2,13 +2,13 @@
 
 A tool to trigger Buildkite pipelines from a self-hosted Git repository.
 
-_You can clone this repository from `https://nicholas.cloud/git/mandarin-duck.git`, but it's also mirrored here to GitHub for convenience and issue tracking._
+_You can clone this repository from `https://nicholas.cloud/git/mandarin-duck.git`, but it's also mirrored to GitHub for convenience and issue tracking._
 
 ## Usage
 
 You will need [`curl`](https://curl.se/) and [`jq`](https://stedolan.github.io/jq/) installed on your host server.
 
-The installation script is currently user-specific, so you'll need to run it as the user you intend to `git push` as. This is typically the `git` user.
+The installation script is currently user-specific, so you'll need to run it as the user you `git push` with. This is typically the `git` user.
 
 The `install.sh` script takes one argument, the path to your self-hosted Git repository. This example uses `/srv/git/example-project.git`.
 
@@ -34,9 +34,10 @@ If you want to set up triggers for multiple Git repositories, re-run the `instal
 
 ### Uninstall
 
-There's a corresponding uninstall script to wipe all traces of `mandarin-duck` from your server. It deletes all the Git hooks it's created and deletes itself.
+There's a corresponding uninstall script to wipe all traces of `mandarin-duck` from your server. It deletes the triggers it's created in each repositiroy and then deletes itself.
 
 ```sh
+ssh git@example.com
 cd mandarin-duck
 ./uninstall.sh
 cd ..
