@@ -1,0 +1,21 @@
++ ./install.sh /tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/remote.git
+Creating config at /tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/mandarin-duck/mandarin-duck.cfg
+Copying trigger handling script
+Creating trigger for /tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/remote.git
+Successfully installed mandarin-duck v1.0!
++ update_config /tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/mandarin-duck/mandarin-duck.cfg '.projects["/tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/remote.git"].buildkite_pipeline_slug = "pipeline" | .buildkite_api_token = "abc123" | .buildkite_organization_slug = "nicholas"'
++ set +x
++ cat /tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/mandarin-duck/mandarin-duck.cfg
+{
+  "version": "1.0",
+  "buildkite_api_token": "abc123",
+  "buildkite_organization_slug": "nicholas",
+  "projects": {
+    "/tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/remote.git": {
+      "buildkite_pipeline_slug": "pipeline"
+    }
+  }
+}
++ git push --quiet /tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/remote.git HEAD:target
+remote: --- Triggering Buildkite build on target        
+remote: Skipping Buildkite API call...        

@@ -1,0 +1,16 @@
++ ./install.sh /tmp/mandarin-duck/tests/strips-trailing-slash-during-install.test/remote.git/
+Creating config at /tmp/mandarin-duck/tests/strips-trailing-slash-during-install.test/mandarin-duck/mandarin-duck.cfg
+Copying trigger handling script
+Creating trigger for /tmp/mandarin-duck/tests/strips-trailing-slash-during-install.test/remote.git
+Successfully installed mandarin-duck v1.0!
++ cat /tmp/mandarin-duck/tests/strips-trailing-slash-during-install.test/mandarin-duck/mandarin-duck.cfg
+{
+  "version": "1.0",
+  "buildkite_api_token": "",
+  "buildkite_organization_slug": "",
+  "projects": {
+    "/tmp/mandarin-duck/tests/strips-trailing-slash-during-install.test/remote.git": {
+      "buildkite_pipeline_slug": ""
+    }
+  }
+}

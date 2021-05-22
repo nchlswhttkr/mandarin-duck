@@ -1,0 +1,2 @@
++ ./install.sh /tmp/does-not-exist
+Specified path does not exist (or isn't a directory)

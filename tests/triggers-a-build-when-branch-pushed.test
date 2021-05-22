@@ -1,0 +1,11 @@
+#!/bin/bash
+set -u
+source ./tests/utils.sh
+
+git init --quiet --bare "$WORKSPACE/remote.git"
+
+set -x
+./install.sh "$WORKSPACE/remote.git"
+update_config "$DESTINATION/mandarin-duck.cfg" ".projects[\"$WORKSPACE/remote.git\"].buildkite_pipeline_slug = \"pipeline\" | .buildkite_api_token = \"abc123\" | .buildkite_organization_slug = \"nicholas\""
+cat "$DESTINATION/mandarin-duck.cfg"
+git push --quiet "$WORKSPACE/remote.git" HEAD:target

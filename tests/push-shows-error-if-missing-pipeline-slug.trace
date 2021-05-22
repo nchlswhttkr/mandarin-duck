@@ -1,0 +1,20 @@
++ ./install.sh /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/remote.git
+Creating config at /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/mandarin-duck/mandarin-duck.cfg
+Copying trigger handling script
+Creating trigger for /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/remote.git
+Successfully installed mandarin-duck v1.0!
++ update_config /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/mandarin-duck/mandarin-duck.cfg '.buildkite_api_token = "abc123" | .buildkite_organization_slug = "nicholas"'
++ set +x
++ cat /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/mandarin-duck/mandarin-duck.cfg
+{
+  "version": "1.0",
+  "buildkite_api_token": "abc123",
+  "buildkite_organization_slug": "nicholas",
+  "projects": {
+    "/tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/remote.git": {
+      "buildkite_pipeline_slug": ""
+    }
+  }
+}
++ git push --quiet /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/remote.git HEAD:target
+remote: Buildkite pipeline name not set, check your config at /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/mandarin-duck/mandarin-duck.cfg        

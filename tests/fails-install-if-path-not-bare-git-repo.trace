@@ -1,0 +1,2 @@
++ ./install.sh /tmp/mandarin-duck/tests/fails-install-if-path-not-bare-git-repo.test/remote.git
+Specified path is not a bare Git repository

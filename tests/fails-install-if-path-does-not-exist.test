@@ -1,0 +1,6 @@
+#!/bin/bash
+set -u
+source ./tests/utils.sh
+
+set -x
+./install.sh "/tmp/does-not-exist"

@@ -31,11 +31,15 @@ cut -d " " -f 3 | sort | uniq | grep "refs/heads/" | cut -c 12- | while read -r 
         continue
     fi
     echo -e "--- Triggering Buildkite build on \033[32m$BRANCH\033[0m"
-    echo -n "You can view this build at "
-    curl --fail --silent -X POST "https://api.buildkite.com/v2/organizations/$BUILDKITE_ORGANIZATION_SLUG/pipelines/$BUILDKITE_PIPELINE_SLUG/builds" \
-        -H "Authorization: Bearer $BUILDKITE_API_TOKEN" \
-        -d "{
-            \"commit\": \"HEAD\",
-            \"branch\": \"$BRANCH\"
-        }" | jq --raw-output ".web_url"
+    if [[ $SKIP_BUILDKITE_API_CALLS_BECAUSE_TESTING != "true" ]]; then
+        echo -n "You can view this build at "
+        curl --fail --silent -X POST "https://api.buildkite.com/v2/organizations/$BUILDKITE_ORGANIZATION_SLUG/pipelines/$BUILDKITE_PIPELINE_SLUG/builds" \
+            -H "Authorization: Bearer $BUILDKITE_API_TOKEN" \
+            -d "{
+                \"commit\": \"HEAD\",
+                \"branch\": \"$BRANCH\"
+            }" | jq --raw-output ".web_url"
+    else
+        echo "Skipping Buildkite API call..."
+    fi
 done

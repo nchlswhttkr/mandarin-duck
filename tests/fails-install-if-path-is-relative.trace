@@ -1,0 +1,2 @@
++ ./install.sh ./relative-path.git
+Git repository must be an absolute path

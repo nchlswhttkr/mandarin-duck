@@ -23,6 +23,10 @@ if [[ $REPO != /* ]]; then
     echo -e "\033[31mGit repository must be an absolute path\033[0m"
     exit 1
 fi
+if [[ ! -d $REPO ]]; then
+    echo -e "\033[31mSpecified path does not exist (or isn't a directory)\033[0m"
+    exit 1
+fi
 if [[ $(GIT_DIR="$REPO" git rev-parse --is-bare-repository 2>/dev/null) != "true" ]]; then
     echo -e "\033[31mSpecified path is not a bare Git repository\033[0m"
     exit 1
