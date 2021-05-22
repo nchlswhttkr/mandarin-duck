@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO="$(pwd)"
-CONFIG="$HOME/.mandarin-duck/mandarin-duck.cfg"
+CONFIG="${DESTINATION=$HOME/.mandarin-duck}/mandarin-duck.cfg"
 CONFIG_VERSION=$(jq --raw-output ".version // \"\"" "$CONFIG")
 if [[ $CONFIG_VERSION != 1.* ]]; then
     echo -e "\033[31mIncompatible version of mandarin-duck\033[0m"

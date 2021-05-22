@@ -3,6 +3,7 @@ set -euo pipefail
 
 VERSION=1.0
 
+# Verify jq and curl are installed
 if ! command -v curl > /dev/null; then
     echo -e "\033[31mYou must have curl installed\033[0m"
     exit 1
@@ -12,6 +13,7 @@ if ! command -v jq > /dev/null; then
     exit 1
 fi
 
+# Validate repo path to add hook to
 if (( $# != 1 )); then
     echo -e "\033[31mExpected repo path, like \"./install.sh /path/to/repo.git\"\033[0m"
     exit 1
@@ -26,11 +28,10 @@ if [[ $(GIT_DIR="$REPO" git rev-parse --is-bare-repository 2>/dev/null) != "true
     exit 1
 fi
 
-
-echo "--- Setting up install directory"
-DESTINATION="$HOME/.mandarin-duck"
+# Create install directory and config
+: "${DESTINATION:="$HOME/.mandarin-duck"}"
 if [[ -d "$DESTINATION" ]]; then
-    echo "Found existing installation at $DESTINATION"
+    echo "Updating existing config at $DESTINATION/mandarin-duck.cfg"
     mv "$DESTINATION/mandarin-duck.cfg" "$DESTINATION/mandarin-duck.cfg.backup"
     jq "
         .projects[\"$REPO\"].buildkite_pipeline_slug = (.projects[\"$REPO\"].buildkite_pipeline_slug // \"\")
@@ -46,21 +47,23 @@ else
     " > "$DESTINATION/mandarin-duck.cfg"
 fi
 chmod 600 "$DESTINATION/mandarin-duck.cfg"
-echo "Make sure to update your config file with your API token and organization/pipeline name!"
-echo "Copying post-receive.sh script"
+
+# All post-receive hooks call a shared script in the install directory
+echo "Copying trigger handling script"
 cp post-receive.sh "$DESTINATION/"
 chmod +x "$DESTINATION/post-receive.sh"
 
-
-echo "--- Creating trigger for $REPO"
+# Ensure post-receive hook exists in target repo
 if [[ -a "$REPO/hooks/post-receive" ]]; then
-    echo -e "\033[33mUpdating existing command\033[0m"
+    echo "Updating trigger for $REPO"
     sed -i "/# mandarin-duck v[.0-9]*/d" "$REPO/hooks/post-receive"
 else
-    echo "Creating post-receive hook"
+    echo "Creating trigger for $REPO"
     echo "#!/bin/sh" > "$REPO/hooks/post-receive"
     chmod +x "$REPO/hooks/post-receive"
 fi
 echo "$DESTINATION/post-receive.sh # mandarin-duck v$VERSION" >> "$REPO/hooks/post-receive"
+
+echo -e "\033[32mSuccessfully installed mandarin-duck v$VERSION!\033[0m"
 
 # TODO: ASCII art of a duck? Would be kinda cute :)
