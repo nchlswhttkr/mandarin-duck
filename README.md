@@ -17,7 +17,7 @@ ssh git@example.com
 
 git init --bare /srv/git/example-project.git # If your repo isn't already set up
 
-git clone https://nicholas.cloud/git/mandarin-duck.git
+git clone --branch v1.0 https://nicholas.cloud/git/mandarin-duck.git
 cd mandarin-duck
 ./install.sh /srv/git/example-project.git/
 ```
