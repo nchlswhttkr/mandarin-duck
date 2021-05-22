@@ -16,5 +16,5 @@ Successfully installed mandarin-duck v1.0!
     }
   }
 }
-+ git push --quiet /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/remote.git HEAD:target
++ git push --quiet /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/remote.git HEAD:refs/heads/target
 remote: Buildkite pipeline name not set, check your config at /tmp/mandarin-duck/tests/push-shows-error-if-missing-pipeline-slug.test/mandarin-duck/mandarin-duck.cfg        

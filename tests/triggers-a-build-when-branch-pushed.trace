@@ -16,6 +16,6 @@ Successfully installed mandarin-duck v1.0!
     }
   }
 }
-+ git push --quiet /tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/remote.git HEAD:target
++ git push --quiet /tmp/mandarin-duck/tests/triggers-a-build-when-branch-pushed.test/remote.git HEAD:refs/heads/target
 remote: --- Triggering Buildkite build on target        
 remote: Skipping Buildkite API call...        
