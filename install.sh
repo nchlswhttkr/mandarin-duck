@@ -33,7 +33,7 @@ if [[ -d "$DESTINATION" ]]; then
     echo "Found existing installation at $DESTINATION"
     mv "$DESTINATION/mandarin-duck.cfg" "$DESTINATION/mandarin-duck.cfg.backup"
     jq "
-        .projects[\"$REPO\"].buildkite_pipeline_slug = .projects[\"$REPO\"].buildkite_pipeline_slug? // \"\"
+        .projects[\"$REPO\"].buildkite_pipeline_slug = (.projects[\"$REPO\"].buildkite_pipeline_slug // \"\")
     " < "$DESTINATION/mandarin-duck.cfg.backup" > "$DESTINATION/mandarin-duck.cfg"
 else
     echo "Creating config at $DESTINATION/mandarin-duck.cfg"
