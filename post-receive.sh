@@ -27,7 +27,7 @@ fi
 
 # Hacky way of getting all branch names from list of updated local refs
 cut -d " " -f 3 | sort | uniq | grep "refs/heads/" | cut -c 12- | while read -r BRANCH; do
-    if git show "main" --no-patch --format=%B | grep -E "\[(skip ci|ci skip)\]" >/dev/null; then
+    if git show "$BRANCH" --no-patch --format=%B | grep -E "\[(skip ci|ci skip)\]" >/dev/null; then
         continue
     fi
     echo -e "--- Triggering Buildkite build on \033[32m$BRANCH\033[0m"
