@@ -24,17 +24,19 @@ cd mandarin-duck
 
 The project is installed to your home directory (`~/.mandarin-duck/`), and a trigger is added to the `post-receive` hook of the target repository. You'll need to add some additional information to the `~/.mandarin-duck/mandarin-duck.cfg` configuration file.
 
-| Name                                                               | Description                                                                     |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
-| `buildkite_api_token`                                              | [Your Buildkite API token](https://buildkite.com/docs/apis/managing-api-tokens) |
-| `buildkite_organization_slug`                                      | The URL-friendly name of your Buildkite organization                            |
-| `projects["/srv/git/example-project.git"].buildkite_pipeline_slug` | The URL-friendly name of this project's pipeline                                |
+| Name                                                               | Description                                                                 |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| `buildkite_api_token`                                              | [Your Buildkite API token](https://buildkite.com/user/api-access-tokens) \* |
+| `buildkite_organization_slug`                                      | The URL-friendly name of your Buildkite organization                        |
+| `projects["/srv/git/example-project.git"].buildkite_pipeline_slug` | The URL-friendly name of this project's pipeline                            |
+
+\* You should create a new API token specifically for this project, and give it the [`write_builds` scope](https://buildkite.com/docs/apis/managing-api-tokens#token-scopes) to trigger builds.
 
 If you want to set up triggers for multiple Git repositories, re-run the `install.sh` for each project. They will each be added to your configuration file.
 
 ### Uninstall
 
-There's a corresponding uninstall script to wipe all traces of `mandarin-duck` from your server. It deletes the triggers it's created in each repositiroy and then deletes itself.
+There's a corresponding uninstall script to wipe all traces of `mandarin-duck` from your server. It deletes the triggers it's created in each repositiroy, revokes the API token it's been using, and then deletes itself.
 
 ```sh
 ssh git@example.com
