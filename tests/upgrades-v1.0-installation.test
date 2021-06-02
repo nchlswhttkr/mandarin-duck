@@ -1,0 +1,25 @@
+#!/bin/bash
+set -u
+source ./tests/utils.sh
+
+git init --quiet --bare "$WORKSPACE/remote.git"
+git init --quiet --bare "$WORKSPACE/preexisting-remote.git"
+
+mkdir -p "$WORKSPACE/mandarin-duck"
+echo "{
+  \"version\": \"1.0\",
+  \"buildkite_api_token\": \"abc123\",
+  \"buildkite_organization_slug\": \"nicholas\",
+  \"projects\": {
+    \"/tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/preexisting-remote.git\": {
+      \"buildkite_pipeline_slug\": \"pipeline\"
+    }
+  }
+}" > "$WORKSPACE/mandarin-duck/mandarin-duck.cfg"
+echo "#!/bin/sh
+$WORKSPACE/mandarin-duck/post-receive.sh # mandarin-duck v1.0" > "$WORKSPACE/preexisting-remote.git/hooks/post-receive"
+
+set -x
+./install.sh "$WORKSPACE/remote.git"
+cat "$DESTINATION/mandarin-duck.cfg"
+readlink "$WORKSPACE/preexisting-remote.git/hooks/post-receive"

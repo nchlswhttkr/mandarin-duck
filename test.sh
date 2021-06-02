@@ -21,6 +21,6 @@ find tests -name "*.test" | while read -r TEST; do
     else
         echo -e "--- \033[31m$TEST\033[0m"
         # Re-run diff for pretty output
-        git diff -U0 --src-prefix=expected/ --dst-prefix=actual/ "${TEST%.test}.trace"
+        git --no-pager diff -U0 -R --src-prefix=expected/ --dst-prefix=actual/ "${TEST%.test}.trace"
     fi
 done

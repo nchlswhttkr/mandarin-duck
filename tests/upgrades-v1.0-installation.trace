@@ -1,0 +1,21 @@
++ ./install.sh /tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/remote.git
+Updating trigger script
+Updating existing v1.0 projects
+Creating trigger for /tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/remote.git
+Successfully installed mandarin-duck v1.1!
++ cat /tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/mandarin-duck/mandarin-duck.cfg
+{
+  "version": "1.1",
+  "buildkite_api_token": "abc123",
+  "buildkite_organization_slug": "nicholas",
+  "projects": {
+    "/tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/preexisting-remote.git": {
+      "buildkite_pipeline_slug": "pipeline"
+    },
+    "/tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/remote.git": {
+      "buildkite_pipeline_slug": ""
+    }
+  }
+}
++ readlink /tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/preexisting-remote.git/hooks/post-receive
+/tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/mandarin-duck/post-receive.sh
