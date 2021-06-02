@@ -1,2 +1,4 @@
 + ./install.sh /tmp/does-not-exist
+Creating config at /tmp/mandarin-duck/tests/fails-install-if-path-does-not-exist.test/mandarin-duck/mandarin-duck.cfg
+Updating trigger script
 Specified path does not exist (or isn't a directory)

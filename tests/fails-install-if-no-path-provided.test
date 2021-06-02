@@ -1,8 +1,0 @@
-#!/bin/bash
-set -u
-source ./tests/utils.sh
-
-git init --quiet --bare "$WORKSPACE/remote.git"
-
-set -x
-./install.sh

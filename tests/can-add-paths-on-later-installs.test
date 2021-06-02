@@ -1,0 +1,11 @@
+#!/bin/bash
+set -u
+source ./tests/utils.sh
+
+git init --quiet --bare "$WORKSPACE/remote.git"
+
+set -x
+./install.sh
+cat "$WORKSPACE/mandarin-duck/mandarin-duck.cfg"
+./install.sh "$WORKSPACE/remote.git"
+cat "$WORKSPACE/mandarin-duck/mandarin-duck.cfg"

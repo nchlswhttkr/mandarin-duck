@@ -13,25 +13,6 @@ if ! command -v jq > /dev/null; then
     exit 1
 fi
 
-# Validate repo path to add hook to
-if (( $# != 1 )); then
-    echo -e "\033[31mExpected repo path, like \"./install.sh /path/to/repo.git\"\033[0m"
-    exit 1
-fi
-REPO="${1%/}" # strip trailing slash that autocomplete can add
-if [[ $REPO != /* ]]; then
-    echo -e "\033[31mGit repository must be an absolute path\033[0m"
-    exit 1
-fi
-if [[ ! -d $REPO ]]; then
-    echo -e "\033[31mSpecified path does not exist (or isn't a directory)\033[0m"
-    exit 1
-fi
-if [[ $(GIT_DIR="$REPO" git rev-parse --is-bare-repository 2>/dev/null) != "true" ]]; then
-    echo -e "\033[31mSpecified path is not a bare Git repository\033[0m"
-    exit 1
-fi
-
 # Create install directory and config
 : "${DESTINATION:="$HOME/.mandarin-duck"}"
 if [[ ! -d "$DESTINATION" ]]; then
@@ -57,7 +38,9 @@ OLD_V1_HOOK_SCRIPT="#!/bin/sh
 $DESTINATION/post-receive.sh # mandarin-duck v1.0"
 FOUND_VERSION=$(jq --raw-output ".version" "$DESTINATION/mandarin-duck.cfg")
 if [[ "$FOUND_VERSION" == "1.0" ]]; then
-    echo "Updating existing v1.0 projects"
+    echo "Found v1.0 config, creating a backup before upgrading"
+    cp "$DESTINATION/mandarin-duck.cfg" "$DESTINATION/mandarin-duck.cfg.backup"
+    echo "Updating v1.0 projects"
     jq --raw-output ".projects | keys | .[]" "$DESTINATION/mandarin-duck.cfg" | while read -r EXISTING_REPO; do
 
         # If the project has been touched manually, skip to avoid trouble
@@ -79,16 +62,35 @@ if [[ "$FOUND_VERSION" == "1.0" ]]; then
     mv "$TEMP" "$DESTINATION/mandarin-duck.cfg"
 fi
 
-# Create trigger for the given repo
-echo "Creating trigger for $REPO"
-if [[ ! -a "$REPO/hooks/post-receive" ]]; then
-    ln -s "$DESTINATION/post-receive.sh" "$REPO/hooks/post-receive"
-    chmod +x "$REPO/hooks/post-receive" # TODO: Is this needed?
-fi # TODO: Warn if hook already exists
-TEMP=$(mktemp)
-chmod 600 "$TEMP"
-jq ".projects[\"$REPO\"].buildkite_pipeline_slug = (.projects[\"$REPO\"].buildkite_pipeline_slug // \"\")" "$DESTINATION/mandarin-duck.cfg" > "$TEMP"
-mv "$TEMP" "$DESTINATION/mandarin-duck.cfg"
+# If a repo is provided, add a hook for it
+if (( $# == 1 )); then
+
+    # Validate the provided repo path
+    REPO="${1%/}" # strip trailing slash that autocomplete can add
+    if [[ $REPO != /* ]]; then
+        echo -e "\033[31mGit repository must be an absolute path\033[0m"
+        exit 1
+    fi
+    if [[ ! -d $REPO ]]; then
+        echo -e "\033[31mSpecified path does not exist (or isn't a directory)\033[0m"
+        exit 1
+    fi
+    if [[ $(GIT_DIR="$REPO" git rev-parse --is-bare-repository 2>/dev/null) != "true" ]]; then
+        echo -e "\033[31mSpecified path is not a bare Git repository\033[0m"
+        exit 1
+    fi
+
+    # Create trigger for the given repo and it to config
+    echo "Creating trigger for $REPO"
+    if [[ ! -a "$REPO/hooks/post-receive" ]]; then
+        ln -s "$DESTINATION/post-receive.sh" "$REPO/hooks/post-receive"
+        chmod +x "$REPO/hooks/post-receive" # TODO: Is this needed?
+    fi # TODO: Warn if hook already exists
+    TEMP=$(mktemp)
+    chmod 600 "$TEMP"
+    jq ".projects[\"$REPO\"].buildkite_pipeline_slug = (.projects[\"$REPO\"].buildkite_pipeline_slug // \"\")" "$DESTINATION/mandarin-duck.cfg" > "$TEMP"
+    mv "$TEMP" "$DESTINATION/mandarin-duck.cfg"
+fi
 
 echo -e "\033[32mSuccessfully installed mandarin-duck v$VERSION!\033[0m"
 

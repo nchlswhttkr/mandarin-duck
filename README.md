@@ -10,7 +10,7 @@ You will need [`curl`](https://curl.se/) and [`jq`](https://stedolan.github.io/j
 
 The installation script is currently user-specific, so you'll need to run it as the user you `git push` with. This is typically the `git` user.
 
-The `install.sh` script takes one argument, the path to your self-hosted Git repository. This example uses `/srv/git/example-project.git`.
+The `install.sh` script takes an optional argument, the path to your self-hosted Git repository. This example uses `/srv/git/example-project.git`.
 
 ```sh
 ssh git@example.com
