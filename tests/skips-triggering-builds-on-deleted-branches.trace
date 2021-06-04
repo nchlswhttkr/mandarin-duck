@@ -1,0 +1,15 @@
++ ./install.sh ./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/remote.git
+Creating config at ./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/mandarin-duck/mandarin-duck.cfg
+Updating trigger script
+Creating trigger for ./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/remote.git
+Successfully installed mandarin-duck v1.1!
++ update_config ./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/mandarin-duck/mandarin-duck.cfg '.projects["./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/remote.git"].buildkite_pipeline_slug = "pipeline" | .buildkite_api_token = "abc123" | .buildkite_organization_slug = "nicholas"'
++ set +x
++ git push ./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/remote.git HEAD:refs/heads/bye-bye-branch
+remote: --- Triggering Buildkite build on bye-bye-branch        
+remote: Skipping Buildkite API call...        
+To ./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/remote.git
+ * [new branch]      HEAD -> bye-bye-branch
++ git push --delete ./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/remote.git refs/heads/bye-bye-branch
+To ./tests/workspaces/skips-triggering-builds-on-deleted-branches.test/remote.git
+ - [deleted]         bye-bye-branch

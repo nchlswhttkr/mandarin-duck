@@ -1,0 +1,25 @@
++ ./install.sh ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/remote.git
+Creating config at ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/mandarin-duck/mandarin-duck.cfg
+Updating trigger script
+Creating trigger for ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/remote.git
+Successfully installed mandarin-duck v1.1!
++ update_config ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/mandarin-duck/mandarin-duck.cfg '.projects["./tests/workspaces/triggers-builds-when-several-branches-pushed.test/remote.git"].buildkite_pipeline_slug = "pipeline" | .buildkite_api_token = "abc123" | .buildkite_organization_slug = "nicholas"'
++ set +x
++ cat ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/mandarin-duck/mandarin-duck.cfg
+{
+  "version": "1.1",
+  "buildkite_api_token": "abc123",
+  "buildkite_organization_slug": "nicholas",
+  "projects": {
+    "./tests/workspaces/triggers-builds-when-several-branches-pushed.test/remote.git": {
+      "buildkite_pipeline_slug": "pipeline"
+    }
+  }
+}
++ git push --quiet ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/remote.git HEAD:refs/heads/branch-1 HEAD:refs/heads/branch-2 HEAD:refs/heads/branch-3
+remote: --- Triggering Buildkite build on branch-1        
+remote: Skipping Buildkite API call...        
+remote: --- Triggering Buildkite build on branch-2        
+remote: Skipping Buildkite API call...        
+remote: --- Triggering Buildkite build on branch-3        
+remote: Skipping Buildkite API call...        

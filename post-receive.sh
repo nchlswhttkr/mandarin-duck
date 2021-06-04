@@ -25,8 +25,12 @@ if [[ $BUILDKITE_PIPELINE_SLUG == "" ]]; then
 fi
 
 
-# Hacky way of getting all branch names from list of updated local refs
-cut -d " " -f 3 | sort | uniq | grep "refs/heads/" | cut -c 12- | while read -r BRANCH; do
+# Hacky way of getting updated branch names from all updated refs
+#  * Ignore deleted branches
+#  * Strip commit information, only need ref name
+#  * Only trigger for local heads, (no remote refs, no tags)
+#  * Strip leading "refs/heads/"
+grep --invert-match " 0* " | cut -d " " -f 3 | grep "refs/heads/" | cut -c 12- | while read -r BRANCH; do
     if git show "$BRANCH" --no-patch --format=%B | grep -E "\[(skip ci|ci skip)\]" >/dev/null; then
         continue
     fi
