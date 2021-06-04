@@ -1,7 +1,7 @@
-+ ./install.sh /tmp/mandarin-duck/tests/creates-symlink-for-hook.test/remote.git
-Creating config at /tmp/mandarin-duck/tests/creates-symlink-for-hook.test/mandarin-duck/mandarin-duck.cfg
++ ./install.sh ./tests/workspaces/creates-symlink-for-hook.test/remote.git
+Creating config at ./tests/workspaces/creates-symlink-for-hook.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
-Creating trigger for /tmp/mandarin-duck/tests/creates-symlink-for-hook.test/remote.git
+Creating trigger for ./tests/workspaces/creates-symlink-for-hook.test/remote.git
 Successfully installed mandarin-duck v1.1!
-+ readlink /tmp/mandarin-duck/tests/creates-symlink-for-hook.test/remote.git/hooks/post-receive
-/tmp/mandarin-duck/tests/creates-symlink-for-hook.test/mandarin-duck/post-receive.sh
++ readlink ./tests/workspaces/creates-symlink-for-hook.test/remote.git/hooks/post-receive
+./tests/workspaces/creates-symlink-for-hook.test/mandarin-duck/post-receive.sh

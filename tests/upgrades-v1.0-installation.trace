@@ -3,27 +3,27 @@ Updating trigger script
 Found v1.0 config, creating a backup before upgrading
 Updating v1.0 projects
 Successfully installed mandarin-duck v1.1!
-+ cat /tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/mandarin-duck/mandarin-duck.cfg.backup
++ cat ./tests/workspaces/upgrades-v1.0-installation.test/mandarin-duck/mandarin-duck.cfg.backup
 {
   "version": "1.0",
   "buildkite_api_token": "abc123",
   "buildkite_organization_slug": "nicholas",
   "projects": {
-    "/tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/remote.git": {
+    "./tests/workspaces/upgrades-v1.0-installation.test/remote.git": {
       "buildkite_pipeline_slug": "pipeline"
     }
   }
 }
-+ cat /tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/mandarin-duck/mandarin-duck.cfg
++ cat ./tests/workspaces/upgrades-v1.0-installation.test/mandarin-duck/mandarin-duck.cfg
 {
   "version": "1.1",
   "buildkite_api_token": "abc123",
   "buildkite_organization_slug": "nicholas",
   "projects": {
-    "/tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/remote.git": {
+    "./tests/workspaces/upgrades-v1.0-installation.test/remote.git": {
       "buildkite_pipeline_slug": "pipeline"
     }
   }
 }
-+ readlink /tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/remote.git/hooks/post-receive
-/tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/mandarin-duck/post-receive.sh
++ readlink ./tests/workspaces/upgrades-v1.0-installation.test/remote.git/hooks/post-receive
+./tests/workspaces/upgrades-v1.0-installation.test/mandarin-duck/post-receive.sh

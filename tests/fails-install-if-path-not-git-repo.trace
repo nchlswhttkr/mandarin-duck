@@ -1,4 +1,4 @@
-+ ./install.sh /tmp/mandarin-duck/tests/fails-install-if-path-not-git-repo.test/remote.git
-Creating config at /tmp/mandarin-duck/tests/fails-install-if-path-not-git-repo.test/mandarin-duck/mandarin-duck.cfg
++ ./install.sh ./tests/workspaces/fails-install-if-path-not-git-repo.test/remote.git
+Creating config at ./tests/workspaces/fails-install-if-path-not-git-repo.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
 Specified path is not a bare Git repository

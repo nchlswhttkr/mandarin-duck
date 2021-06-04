@@ -10,7 +10,7 @@ echo "{
   \"buildkite_api_token\": \"abc123\",
   \"buildkite_organization_slug\": \"nicholas\",
   \"projects\": {
-    \"/tmp/mandarin-duck/tests/upgrades-v1.0-installation.test/remote.git\": {
+    \"$PWD/tests/workspaces/upgrades-v1.0-installation.test/remote.git\": {
       \"buildkite_pipeline_slug\": \"pipeline\"
     }
   }

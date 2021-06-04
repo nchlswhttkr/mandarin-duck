@@ -1,25 +1,25 @@
 + ./install.sh
-Creating config at /tmp/mandarin-duck/tests/can-add-paths-on-later-installs.test/mandarin-duck/mandarin-duck.cfg
+Creating config at ./tests/workspaces/can-add-paths-on-later-installs.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
 Successfully installed mandarin-duck v1.1!
-+ cat /tmp/mandarin-duck/tests/can-add-paths-on-later-installs.test/mandarin-duck/mandarin-duck.cfg
++ cat ./tests/workspaces/can-add-paths-on-later-installs.test/mandarin-duck/mandarin-duck.cfg
 {
   "version": "1.1",
   "buildkite_api_token": "",
   "buildkite_organization_slug": "",
   "projects": {}
 }
-+ ./install.sh /tmp/mandarin-duck/tests/can-add-paths-on-later-installs.test/remote.git
++ ./install.sh ./tests/workspaces/can-add-paths-on-later-installs.test/remote.git
 Updating trigger script
-Creating trigger for /tmp/mandarin-duck/tests/can-add-paths-on-later-installs.test/remote.git
+Creating trigger for ./tests/workspaces/can-add-paths-on-later-installs.test/remote.git
 Successfully installed mandarin-duck v1.1!
-+ cat /tmp/mandarin-duck/tests/can-add-paths-on-later-installs.test/mandarin-duck/mandarin-duck.cfg
++ cat ./tests/workspaces/can-add-paths-on-later-installs.test/mandarin-duck/mandarin-duck.cfg
 {
   "version": "1.1",
   "buildkite_api_token": "",
   "buildkite_organization_slug": "",
   "projects": {
-    "/tmp/mandarin-duck/tests/can-add-paths-on-later-installs.test/remote.git": {
+    "./tests/workspaces/can-add-paths-on-later-installs.test/remote.git": {
       "buildkite_pipeline_slug": ""
     }
   }

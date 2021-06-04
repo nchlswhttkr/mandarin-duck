@@ -1,20 +1,20 @@
-+ ./install.sh /tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/remote.git
-Creating config at /tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/mandarin-duck/mandarin-duck.cfg
++ ./install.sh ./tests/workspaces/push-shows-error-if-missing-api-token.test/remote.git
+Creating config at ./tests/workspaces/push-shows-error-if-missing-api-token.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
-Creating trigger for /tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/remote.git
+Creating trigger for ./tests/workspaces/push-shows-error-if-missing-api-token.test/remote.git
 Successfully installed mandarin-duck v1.1!
-+ update_config /tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/mandarin-duck/mandarin-duck.cfg '.projects["/tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/remote.git"].buildkite_pipeline_slug = "pipeline" | .buildkite_organization_slug = "nicholas"'
++ update_config ./tests/workspaces/push-shows-error-if-missing-api-token.test/mandarin-duck/mandarin-duck.cfg '.projects["./tests/workspaces/push-shows-error-if-missing-api-token.test/remote.git"].buildkite_pipeline_slug = "pipeline" | .buildkite_organization_slug = "nicholas"'
 + set +x
-+ cat /tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/mandarin-duck/mandarin-duck.cfg
++ cat ./tests/workspaces/push-shows-error-if-missing-api-token.test/mandarin-duck/mandarin-duck.cfg
 {
   "version": "1.1",
   "buildkite_api_token": "",
   "buildkite_organization_slug": "nicholas",
   "projects": {
-    "/tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/remote.git": {
+    "./tests/workspaces/push-shows-error-if-missing-api-token.test/remote.git": {
       "buildkite_pipeline_slug": "pipeline"
     }
   }
 }
-+ git push --quiet /tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/remote.git HEAD:refs/heads/target
-remote: Buildkite API token not set, check your config at /tmp/mandarin-duck/tests/push-shows-error-if-missing-api-token.test/mandarin-duck/mandarin-duck.cfg        
++ git push --quiet ./tests/workspaces/push-shows-error-if-missing-api-token.test/remote.git HEAD:refs/heads/target
+remote: Buildkite API token not set, check your config at ./tests/workspaces/push-shows-error-if-missing-api-token.test/mandarin-duck/mandarin-duck.cfg        

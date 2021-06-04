@@ -1,4 +1,4 @@
 + ./install.sh ./relative-path.git
-Creating config at /tmp/mandarin-duck/tests/fails-install-if-path-is-relative.test/mandarin-duck/mandarin-duck.cfg
+Creating config at ./tests/workspaces/fails-install-if-path-is-relative.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
 Git repository must be an absolute path

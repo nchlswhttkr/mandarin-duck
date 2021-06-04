@@ -1,8 +1,8 @@
 + ./install.sh
-Creating config at /tmp/mandarin-duck/tests/does-not-require-path-for-install.test/mandarin-duck/mandarin-duck.cfg
+Creating config at ./tests/workspaces/does-not-require-path-for-install.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
 Successfully installed mandarin-duck v1.1!
-+ cat /tmp/mandarin-duck/tests/does-not-require-path-for-install.test/mandarin-duck/mandarin-duck.cfg
++ cat ./tests/workspaces/does-not-require-path-for-install.test/mandarin-duck/mandarin-duck.cfg
 {
   "version": "1.1",
   "buildkite_api_token": "",
