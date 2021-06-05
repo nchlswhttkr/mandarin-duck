@@ -1,0 +1,11 @@
+#!/bin/bash
+set -u
+source ./tests/utils.sh
+
+git init --quiet --bare "$WORKSPACE/remote.git"
+
+set -x
+./install.sh "$WORKSPACE/remote.git"
+./uninstall.sh <<<"1"
+if [[ -d "$DESTINATION" ]]; then echo "Expected config directory to be deleted"; fi
+if [[ -a "$WORKSPACE/remote.git/hooks/post-receive" ]]; then echo "Expected post-receive hook to be deleted"; fi

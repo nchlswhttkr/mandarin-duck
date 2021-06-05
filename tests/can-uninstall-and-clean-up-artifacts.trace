@@ -1,0 +1,15 @@
++ ./install.sh ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/remote.git
+Creating config at ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/mandarin-duck/mandarin-duck.cfg
+Updating trigger script
+Creating trigger for ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/remote.git
+Successfully installed mandarin-duck v1.1!
++ ./uninstall.sh
+You are about to uninstall mandarin-duck
+ * ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/mandarin-duck will be deleted
+ * The Buildkite API token used to create builds will be revoked
+ * The post-receive hook will be deleted in 1 repositories
+
+Uninstalling mandarin-duck...
+Skipping Buildkite API call...
++ [[ -d ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/mandarin-duck ]]
++ [[ -a ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/remote.git/hooks/post-receive ]]
