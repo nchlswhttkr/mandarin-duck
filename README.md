@@ -17,7 +17,7 @@ ssh git@example.com
 
 git init --bare /srv/git/example-project.git # If your repo isn't already set up
 
-git clone --branch v1.0 https://nicholas.cloud/git/mandarin-duck.git
+git clone --branch v1.1 https://nicholas.cloud/git/mandarin-duck.git
 cd mandarin-duck
 ./install.sh /srv/git/example-project.git/
 ```
@@ -34,6 +34,19 @@ The project is installed to your home directory (`~/.mandarin-duck/`), and a tri
 
 If you want to set up triggers for multiple Git repositories, re-run the `install.sh` for each project. They will each be added to your configuration file.
 
+### Upgrade
+
+To upgrade, you can re-run the `install.sh` script. It will update the existing config, and make any necessary changes to your projects.
+
+```sh
+ssh git@example.com
+cd mandarin-duck
+git fetch --tags
+git tag # find the latest verson
+git checkout $LATEST_VERSION
+./install.sh
+```
+
 ### Uninstall
 
 There's a corresponding uninstall script to wipe all traces of `mandarin-duck` from your server. It deletes the triggers it's created in each repositiroy, revokes the API token it's been using, and then deletes itself.
@@ -45,3 +58,18 @@ cd mandarin-duck
 cd ..
 rm -rf mandarin-duck
 ```
+
+## Releases
+
+### v1.1
+
+For a full list of commits and changes, see the [diff on GitHub](https://github.com/nchlswhttkr/mandarin-duck/compare/v1.0...v1.1).
+
+- The Buildkite API token stored in config will be automatically revoked on uninstall.
+- Using the [`[skip ci]`/`[ci skip]` keyword](https://buildkite.com/docs/pipelines/ignoring-a-commit) in a commit will prevent a build being triggered.
+- Builds will no longer be triggered on deleted branches.
+- You can automatically upgrade by running `./install.sh`!
+
+### v1.0
+
+Initial release. Hello world!
