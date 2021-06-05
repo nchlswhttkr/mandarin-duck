@@ -8,9 +8,9 @@ _You can clone this repository from `https://nicholas.cloud/git/mandarin-duck.gi
 
 You will need [`curl`](https://curl.se/) and [`jq`](https://stedolan.github.io/jq/) installed on your host server.
 
-The installation script is currently user-specific, so you'll need to run it as the user you `git push` with. This is typically the `git` user.
+The `install.sh` script is currently user-specific, so you'll need to run it as the user you `git push` with. This is typically the `git` user.
 
-The `install.sh` script takes an optional argument, the path to your self-hosted Git repository. This example uses `/srv/git/example-project.git`.
+You can provide the paths to your self-hosted Git repositories to the install script as arguments. This example uses one repo, `/srv/git/example-project.git`.
 
 ```sh
 ssh git@example.com
@@ -22,7 +22,7 @@ cd mandarin-duck
 ./install.sh /srv/git/example-project.git/
 ```
 
-The project is installed to your home directory (`~/.mandarin-duck/`), and a trigger is added to the `post-receive` hook of the target repository. You'll need to add some additional information to the `~/.mandarin-duck/mandarin-duck.cfg` configuration file.
+The project is installed to your home directory (`~/.mandarin-duck/`), and a trigger is added as the `post-receive` hook of each repository. You'll need to add some additional information to the `~/.mandarin-duck/mandarin-duck.cfg` configuration file.
 
 | Name                                                               | Description                                                                 |
 | ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
@@ -40,6 +40,7 @@ To upgrade, you can re-run the `install.sh` script. It will update the existing 
 
 ```sh
 ssh git@example.com
+
 cd mandarin-duck
 git fetch --tags
 git tag # find the latest verson
@@ -53,8 +54,11 @@ There's a corresponding uninstall script to wipe all traces of `mandarin-duck` f
 
 ```sh
 ssh git@example.com
+
 cd mandarin-duck
 ./uninstall.sh
+
+# clean up the source code too
 cd ..
 rm -rf mandarin-duck
 ```

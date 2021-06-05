@@ -1,0 +1,11 @@
+#!/bin/bash
+set -u
+source ./tests/utils.sh
+
+git init --quiet --bare "$WORKSPACE/repo-1.git"
+git init --quiet --bare "$WORKSPACE/repo-2.git"
+git init --quiet --bare "$WORKSPACE/repo-3.git"
+
+set -x
+./install.sh "$WORKSPACE/repo-1.git"  "$WORKSPACE/repo-2.git"  "$WORKSPACE/repo-3.git"
+cat "$DESTINATION/mandarin-duck.cfg"

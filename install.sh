@@ -63,10 +63,10 @@ if [[ "$FOUND_VERSION" == "1.0" ]]; then
 fi
 
 # If a repo is provided, add a hook for it
-if (( $# == 1 )); then
+for ARG in "$@"; do
 
     # Validate the provided repo path
-    REPO="${1%/}" # strip trailing slash that autocomplete can add
+    REPO="${ARG%/}" # strip trailing slash that autocomplete can add
     if [[ $REPO != /* ]]; then
         echo -e "\033[31mGit repository must be an absolute path\033[0m"
         exit 1
@@ -90,7 +90,7 @@ if (( $# == 1 )); then
     chmod 600 "$TEMP"
     jq ".projects[\"$REPO\"].buildkite_pipeline_slug = (.projects[\"$REPO\"].buildkite_pipeline_slug // \"\")" "$DESTINATION/mandarin-duck.cfg" > "$TEMP"
     mv "$TEMP" "$DESTINATION/mandarin-duck.cfg"
-fi
+done
 
 echo -e "\033[32mSuccessfully installed mandarin-duck v$VERSION!\033[0m"
 
