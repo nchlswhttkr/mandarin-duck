@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION=1.1
+VERSION=1.2
 
 # Verify jq and curl are installed
 if ! command -v curl > /dev/null; then
@@ -55,11 +55,11 @@ if [[ "$FOUND_VERSION" == "1.0" ]]; then
         chmod +x "$EXISTING_REPO/hooks/post-receive" # TODO: Is this needed?
     done
 
-    # Upgrade the config version from v1.0
-    TEMP=$(mktemp)
-    jq ".version = \"$VERSION\"" "$DESTINATION/mandarin-duck.cfg" > "$TEMP"
-    mv "$TEMP" "$DESTINATION/mandarin-duck.cfg"
 fi
+# Upgrade the config version from v1.0
+TEMP=$(mktemp)
+jq ".version = \"$VERSION\"" "$DESTINATION/mandarin-duck.cfg" > "$TEMP"
+mv "$TEMP" "$DESTINATION/mandarin-duck.cfg"
 
 # If a repo is provided, add a hook for it
 for ARG in "$@"; do

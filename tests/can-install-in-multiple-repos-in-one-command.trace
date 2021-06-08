@@ -4,10 +4,10 @@ Updating trigger script
 Creating trigger for ./tests/workspaces/can-install-in-multiple-repos-in-one-command.test/repo-1.git
 Creating trigger for ./tests/workspaces/can-install-in-multiple-repos-in-one-command.test/repo-2.git
 Creating trigger for ./tests/workspaces/can-install-in-multiple-repos-in-one-command.test/repo-3.git
-Successfully installed mandarin-duck v1.1!
+Successfully installed mandarin-duck v1.2!
 + cat ./tests/workspaces/can-install-in-multiple-repos-in-one-command.test/mandarin-duck/mandarin-duck.cfg
 {
-  "version": "1.1",
+  "version": "1.2",
   "buildkite_api_token": "",
   "buildkite_organization_slug": "",
   "projects": {

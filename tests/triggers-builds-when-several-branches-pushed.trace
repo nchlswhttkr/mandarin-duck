@@ -2,12 +2,12 @@
 Creating config at ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
 Creating trigger for ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/remote.git
-Successfully installed mandarin-duck v1.1!
+Successfully installed mandarin-duck v1.2!
 + update_config ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/mandarin-duck/mandarin-duck.cfg '.projects["./tests/workspaces/triggers-builds-when-several-branches-pushed.test/remote.git"].buildkite_pipeline_slug = "pipeline" | .buildkite_api_token = "abc123" | .buildkite_organization_slug = "nicholas"'
 + set +x
 + cat ./tests/workspaces/triggers-builds-when-several-branches-pushed.test/mandarin-duck/mandarin-duck.cfg
 {
-  "version": "1.1",
+  "version": "1.2",
   "buildkite_api_token": "abc123",
   "buildkite_organization_slug": "nicholas",
   "projects": {

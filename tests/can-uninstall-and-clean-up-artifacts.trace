@@ -2,7 +2,7 @@
 Creating config at ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
 Creating trigger for ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/remote.git
-Successfully installed mandarin-duck v1.1!
+Successfully installed mandarin-duck v1.2!
 + ./uninstall.sh
 You are about to uninstall mandarin-duck
  * ./tests/workspaces/can-uninstall-and-clean-up-artifacts.test/mandarin-duck will be deleted

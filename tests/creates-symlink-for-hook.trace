@@ -2,6 +2,6 @@
 Creating config at ./tests/workspaces/creates-symlink-for-hook.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
 Creating trigger for ./tests/workspaces/creates-symlink-for-hook.test/remote.git
-Successfully installed mandarin-duck v1.1!
+Successfully installed mandarin-duck v1.2!
 + readlink ./tests/workspaces/creates-symlink-for-hook.test/remote.git/hooks/post-receive
 ./tests/workspaces/creates-symlink-for-hook.test/mandarin-duck/post-receive.sh

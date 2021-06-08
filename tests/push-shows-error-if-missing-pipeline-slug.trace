@@ -2,12 +2,12 @@
 Creating config at ./tests/workspaces/push-shows-error-if-missing-pipeline-slug.test/mandarin-duck/mandarin-duck.cfg
 Updating trigger script
 Creating trigger for ./tests/workspaces/push-shows-error-if-missing-pipeline-slug.test/remote.git
-Successfully installed mandarin-duck v1.1!
+Successfully installed mandarin-duck v1.2!
 + update_config ./tests/workspaces/push-shows-error-if-missing-pipeline-slug.test/mandarin-duck/mandarin-duck.cfg '.buildkite_api_token = "abc123" | .buildkite_organization_slug = "nicholas"'
 + set +x
 + cat ./tests/workspaces/push-shows-error-if-missing-pipeline-slug.test/mandarin-duck/mandarin-duck.cfg
 {
-  "version": "1.1",
+  "version": "1.2",
   "buildkite_api_token": "abc123",
   "buildkite_organization_slug": "nicholas",
   "projects": {
