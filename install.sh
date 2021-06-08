@@ -57,7 +57,6 @@ if [[ "$FOUND_VERSION" == "1.0" ]]; then
 
     # Upgrade the config version from v1.0
     TEMP=$(mktemp)
-    chmod 600 "$TEMP"
     jq ".version = \"$VERSION\"" "$DESTINATION/mandarin-duck.cfg" > "$TEMP"
     mv "$TEMP" "$DESTINATION/mandarin-duck.cfg"
 fi
@@ -87,7 +86,6 @@ for ARG in "$@"; do
         chmod +x "$REPO/hooks/post-receive" # TODO: Is this needed?
     fi # TODO: Warn if hook already exists
     TEMP=$(mktemp)
-    chmod 600 "$TEMP"
     jq ".projects[\"$REPO\"].buildkite_pipeline_slug = (.projects[\"$REPO\"].buildkite_pipeline_slug // \"\")" "$DESTINATION/mandarin-duck.cfg" > "$TEMP"
     mv "$TEMP" "$DESTINATION/mandarin-duck.cfg"
 done
