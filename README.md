@@ -17,7 +17,7 @@ ssh git@example.com
 
 git init --bare /srv/git/example-project.git # If your repo isn't already set up
 
-git clone --branch v1.1 https://nicholas.cloud/git/mandarin-duck.git
+git clone --branch v1.2 https://nicholas.cloud/git/mandarin-duck.git
 cd mandarin-duck
 ./install.sh /srv/git/example-project.git/
 ```
@@ -64,6 +64,13 @@ rm -rf mandarin-duck
 ```
 
 ## Releases
+
+### v1.2
+
+For a full list of commits and changes, see the [diff on GitHub](https://github.com/nchlswhttkr/mandarin-duck/compare/v1.1...v1.2).
+
+- Fix environment variable from testing causing "unbound variable" errors in live installs.
+- The install script now accepts multiple repos in a single command.
 
 ### v1.1
 
