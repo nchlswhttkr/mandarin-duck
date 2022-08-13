@@ -2,8 +2,6 @@
 
 A tool to trigger Buildkite pipelines from a self-hosted Git repository.
 
-_You can clone this repository from `https://nicholas.cloud/git/mandarin-duck.git`, but it's also mirrored to GitHub for convenience and issue tracking._
-
 ## Usage
 
 You will need [`curl`](https://curl.se/) and [`jq`](https://stedolan.github.io/jq/) installed on your host server.
